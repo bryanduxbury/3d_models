@@ -49,9 +49,9 @@ module lid() {
 
 
 module corner_bracket() {
-	union() {
-		translate([-.5, -1, 0]) cube([5, 2, box_h], center=true);
-		translate([1, .5, 0]) rotate(a=[0,0,90]) cube([5, 2, box_h], center=true);	
+	translate([-.5, -.5, 0]) difference() {
+		cube([5,5,box_h], center=true);
+		translate([-1.1, -1.1, 0]) cube([3.1,3.1,box_h*2], center=true);
 	}
 }
 
@@ -81,10 +81,10 @@ module box() {
 				}
 			}
 			
-			translate([box_w/2, box_d/2]) rotate(a=[0, 0, 90]) corner_bracket();
-			translate([-box_w/2, box_d/2]) rotate(a=[0, 0, 180]) corner_bracket();
-			translate([box_w/2, -box_d/2]) rotate(a=[0, 0, 0]) corner_bracket();
-			translate([-box_w/2, -box_d/2]) rotate(a=[0, 0, 270]) corner_bracket();
+			translate([box_w/2, box_d/2]) rotate(a=[0, 0, 0]) corner_bracket();
+			translate([-box_w/2, box_d/2]) rotate(a=[0, 0, 90]) corner_bracket();
+			translate([box_w/2, -box_d/2]) rotate(a=[0, 0, 270]) corner_bracket();
+			translate([-box_w/2, -box_d/2]) rotate(a=[0, 0, 180]) corner_bracket();
 		}
 
 		translate([box_w/3, box_d/2, box_h/2 - 3]) rotate(a=[90, 0, 0]) cylinder(r=2, h=10, center=true);
