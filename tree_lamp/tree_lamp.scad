@@ -1,6 +1,3 @@
-// TODOS
-// - mock in the internal components
-
 base_material_thickness = 3;
 
 base_height = 150;
@@ -28,7 +25,7 @@ canopy_material_thickness = 3;
 canopy_delta_y = 30;
 
 central_canopy_width = 100;
-central_canopy_height = 100;
+central_canopy_height = 105;
 
 side_canopy_height = 40;
 side_canopy_width = 60;
@@ -288,9 +285,16 @@ module canopy_nut_cap() {
 	}
 }
 
+module power_supply() {
+	color([.5, 0, 0, .25]) cube([20, 30, 50], center=true);
+}
+
 module assembled() {
 	translate([0, -base_depth/2 + base_material_thickness/2, 0]) front();
-	translate([0, base_depth/2 - base_material_thickness/2, 0]) back();
+	translate([10, 0, -25]) power_supply();
+
+
+//	translate([0, base_depth/2 - base_material_thickness/2, 0]) back();
 	
 	translate([-base_width/2 + base_material_thickness/2, 0, 0]) rotate(a=[0,0,90]) side();
 	translate([base_width/2 - base_material_thickness/2, 0, 0])  rotate(a=[0,0,90]) side();
@@ -342,12 +346,12 @@ module assembled() {
 module plywood_panel() {
 	projection(cut=true) rotate(a=[90, 0, 0]) {
 		front();
-		translate([base_width + 3, 0, root_height]) rotate(a=[180, 0, 0]) back();
-		translate([1.5 * base_width + base_depth / 2 + 6, 0, 0]) rotate(a=[0, 0, 0]) side();
+		translate([base_width + root_width, 0, root_height]) rotate(a=[180, 0, 0]) back();
+		translate([2*(base_width + root_width), 0, 0]) rotate(a=[0, 0, 0]) side();
 		translate([-base_width / 2 - base_depth / 2 - 3, 0, root_height]) rotate(a=[180, 0, 0]) side();
 		translate([-base_width / 2 - 1.5 * base_depth - 6, 0, 0]) rotate(a=[90, 90, 0]) bottom();
 		translate([-base_width / 2 - 1.5 * base_depth - 6, 0, -base_height / 2 + bough_height / 2]) render() bough_left();
-		translate([1.5 * base_width + base_depth / 2 + bough_width, 0, base_height / 2]) rotate(a=[0, 90, 180]) render() bough_left();
+		translate([3*(base_width + root_width), 0, base_height / 2]) rotate(a=[0, 90, 180]) render() bough_left();
 	}
 }
 
@@ -364,8 +368,8 @@ module acrylic_panel() {
 	}
 }
 
-assembled();
+//assembled();
 
-//plywood_panel();
+plywood_panel();
 
 //acrylic_panel();
