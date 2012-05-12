@@ -1,6 +1,6 @@
-box_w = 75;
-box_d = 50;
-box_h = 25;
+box_w = 100;
+box_d = 75;
+box_h = 50;
 
 box_wall_thickness = 2;
 
@@ -92,5 +92,5 @@ module box() {
 	}
 }
 
-!box();
-translate([0,0,box_h/2]) lid();
+box();
+translate([0,0,box_h/2]) !lid();
