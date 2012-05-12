@@ -172,7 +172,7 @@ module rotor_arm() {
 module rotor_wheel() {
 	difference() {
 		cylinder(r=rotor_wheel_diameter/2, h=squished_tubing_width - 1, $fn=50, center=true);
-		cylinder(r=1.5, h=20, $fn=50);
+		cylinder(r=1.5, h=20, $fn=50, center=true);
 	}
 }
 
@@ -186,8 +186,11 @@ module rotor_assembly() {
 
 
 
-lower_chamber();
+// lower_chamber();
+// 
+// translate([0,0,15]) rotor_assembly();
+// 
+// translate([0,0,30]) upper_chamber();
 
-translate([0,0,15]) rotor_assembly();
-
-translate([0,0,30]) upper_chamber();
+// rotor_arm();
+rotor_wheel();
